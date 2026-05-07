@@ -1,12 +1,37 @@
-#
+# Tennis Academy Management (Prototype / V1)
 
-La academia desea desarrollar una aplicación en la cual los entrenadores puedan facturar directamente a sus clientes y los clientes puedan pagar la factura a través de la aplicación. Actualmente, tenemos y utilizamos Quickbooks Online, pero tenemos dificultades para facturar a los clientes debido a su gran cantidad. Debería haber una forma de que esta nueva aplicación esté vinculada a Quickbooks para que los pagos se procesen automáticamente. Si no es posible con Quickbooks, entonces debería estar vinculada al banco/Zelle de la academia. No estoy seguro de qué necesita estar conectado/establecido para que la aplicación acepte pagos o si eso es siquiera posible. Sería ideal que la factura creara un enlace que los clientes pudieran hacer clic, enviándolos a Stripe u otro procesador de pagos, donde pudieran ingresar su información de tarjeta de crédito o cuenta bancaria. ¡Sería genial si todo se pudiera hacer dentro de la aplicación!
+> **⚠️ Project Status Notice:** > This repository contains the **initial prototype / early version** of a Tennis Academy management system. The actual, full-scale project is currently in active development, has migrated to a more advanced architecture, and is **privately hosted** as it is currently in production use by a real academy. 
+> 
+> This public repository serves solely as a showcase of the initial logical workflows, monolithic architecture, and early-stage integration of key features like Stripe payments and role-based authentication.
 
-Aquí están las especificaciones que nos gustaría que incluyera la aplicación:
+## 📖 About the Prototype
+This is a monolithic Node.js web application built to handle the daily operations of a tennis academy. It utilizes Server-Side Rendering (SSR) via EJS to deliver dynamic views directly from the Express backend.
 
-Inicio de sesión al ingresar (usuario, contraseña y Face ID). Supongo que esto permitirá a los entrenadores configurar su perfil en la aplicación, incluyendo su nombre, dirección de correo electrónico y número de teléfono.
-Crear un cliente, con campos personalizados: nombre de los padres, nombre del estudiante, dirección de correo electrónico, número de teléfono.
-Crear una factura, con campos personalizados: cliente (opción desplegable), tipo de servicio prestado (opción desplegable entre clase privada, semiprivada, clase grupal), entrenador que dio la clase (opción desplegable), duración de la clase (opción desplegable entre 30 minutos, una hora, una hora y media), monto (campo de entrada), fecha de la factura (campo de entrada), número de factura (generado automáticamente en secuencia), mensaje en la factura ("¡Gracias por confiar en nosotros con el viaje de tenis tuyo o de tu hijo/a!").
-Botón para enviar la factura por correo electrónico y/o número de teléfono después de crearla.
-Lista de facturas enviadas que se actualiza automáticamente cuando son pagadas (esto es muy importante ya que no queremos verificar manualmente la cuenta bancaria).
-Estoy haciendo algunos cambios con respecto a cómo se ve actualmente cuando enviamos una factura a través de Quickbooks Online, pero más o menos, a continuación tienes un ejemplo.
+The system was designed to manage:
+- **Students & Memberships:** Registration, profile management, and class assignments.
+- **Classes:** Scheduling and tracking.
+- **Billing & Payments:** End-to-end integration with Stripe for invoice generation and payment processing.
+- **Role-based Access:** Differentiating between admin/staff capabilities and standard users via JWT.
+
+## 🛠️ Tech Stack
+- **Backend:** Node.js, Express.js
+- **Frontend / Views:** EJS (Embedded JavaScript templates), HTML/CSS
+- **Database:** MySQL
+- **Authentication:** JWT (JSON Web Tokens), `bcrypt` for password hashing
+- **Integrations:** Stripe API (Payments), `multer` (File uploads)
+
+## 🏗️ Architecture & Historical Context
+This prototype was built using a classic MVC (Model-View-Controller) pattern. As a monolithic application, both the API routes and the UI rendering logic reside within this single codebase. 
+
+While this repository demonstrates strong foundational features (parameterized SQL queries, hashed storage, end-to-end payment flows), the private production version has since been refactored to include:
+- Strict CI/CD pipelines and automated testing.
+- Enhanced security middlewares and strict CORS/Cookie policies.
+- Decoupled services (Microservices/API-first approach).
+
+## 🚀 Running the Prototype Locally
+*(Note: Since this is an archived prototype, you will need your own `.env` configurations to run it).*
+
+1. Clone the repository: `git clone https://github.com/your-username/your-repo-name.git`
+2. Install dependencies: `npm install`
+3. Set up your `.env` file with your local MySQL credentials, JWT Secret, and Stripe test keys.
+4. Run the server: `npm start`
